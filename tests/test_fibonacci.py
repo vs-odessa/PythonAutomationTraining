@@ -1,9 +1,6 @@
 import pytest
 from functions.fibonacci import generate_fibonacci
 
-my_list = generate_fibonacci(5)
-print(*my_list)
-
 class Tests():
     def test_case1_positive(self):
         actual_result = generate_fibonacci(5)
