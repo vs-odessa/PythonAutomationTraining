@@ -1,0 +1,12 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/PythonAutomationTraining
+        docker:
+            - image: circleci/python:3.7.2
+                environment:
+                    PIPENV_VENV_IN_PROJECT: true
+        steps:        
+            - run: 
+              command: |
+                pytest
