@@ -6,7 +6,10 @@ jobs:
             - image: circleci/python:3.7.2
               environment:
                   PIPENV_VENV_IN_PROJECT: true
-        steps:        
+        steps:
+            - run:
+                command: |
+                  sudo pip install pytest                
             - run: 
                 command: |
                   pytest
