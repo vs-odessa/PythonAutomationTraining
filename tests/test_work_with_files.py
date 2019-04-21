@@ -2,7 +2,7 @@ import pytest, json
 from functions.file_helper import *
 
 current_path = os.getcwd()
-abs_xmlfile_path = os.path.join(current_path, "..", "samples", "xml", "test_data.xml")
+abs_xmlfile_path = os.path.join(current_path, "samples", "xml", "test_data.xml")
 
 class Tests_File_Processing():
     def test_check_xmlfile_presence(self):
