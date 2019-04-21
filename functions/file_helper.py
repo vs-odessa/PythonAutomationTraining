@@ -1,5 +1,4 @@
 import xmltodict, json, os, tempfile
-from collections import OrderedDict
 
 def read_file_to_string(file_path):
     with open(file_path) as _file:
@@ -19,7 +18,6 @@ def write_dict_to_json_file(dict, json_file_path):
 
 
 def update_key_values(_dict):
-    key_list = list(_dict)
     persons_list = _dict['PERSONS']['PERSON']
     index = 0
     for person in persons_list:
@@ -48,10 +46,8 @@ def update_key_values(_dict):
         persons_list[index] = person_dict
         index +=1
     _dict['PERSONS']['PERSON'] = persons_list
-
+    
     print (persons_list)
-    # for key in key_list:
-    #     if key
 
 
 if __name__ == "__main__":

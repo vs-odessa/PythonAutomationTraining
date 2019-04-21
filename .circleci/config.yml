@@ -24,6 +24,7 @@ jobs:
                 name: run tests 
                 command: |
                   . venv/bin/activate
+                  sudo pip install xmltodict
                   pytest -q 
                   
             - store_artifacts:
