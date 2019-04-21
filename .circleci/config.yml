@@ -25,7 +25,7 @@ jobs:
                 command: |
                   . venv/bin/activate
                   sudo pip install xmltodict
-                  pytest -q 
+                  pytest -v
                   
             - store_artifacts:
                 path: test-reports
