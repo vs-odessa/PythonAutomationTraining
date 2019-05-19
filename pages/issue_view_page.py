@@ -18,7 +18,5 @@ class ViewIssuePage:
         return issue_summary_text
 
     def edit_current_issue(self):
-        edit_issue_elements = self.driver.find_elements(*self.ISSUE_SUMMARY_FIELD)
-        edit_issue_element = edit_issue_elements[0]
-        # edit_issue_element: WebElement = self.driver.find_elements(*self.ISSUE_SUMMARY_FIELD)[2]
+        edit_issue_element = self.driver.find_element(*self.EDIT_ISSUE_BUTTON)
         edit_issue_element.click()

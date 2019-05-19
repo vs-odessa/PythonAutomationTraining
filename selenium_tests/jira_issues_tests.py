@@ -35,13 +35,13 @@ class TestIssueJira:
         self.edit_issue_page.set_issue_summary(self.ISSUE_NAME)
         # self.issue_page.set_issue_body("1 - Step1\n2 - Step2")
         self.edit_issue_page.assign_to_current_user()
-        self.edit_issue_page.submit_issue()
+        self.edit_issue_page.submit_create_issue()
 
     def test_create_issue_missing_required_field(self):
         self.login_flow()
         self.main_page.click_create_issue_button()
         # self.issue_page.set_issue_summary(self.ISSUE_NAME)
-        self.edit_issue_page.submit_issue()
+        self.edit_issue_page.submit_create_issue()
         assert self.edit_issue_page.error_occurred()
 
     def test_search_issue(self):
@@ -55,7 +55,8 @@ class TestIssueJira:
         self.main_page.perform_search(self.ISSUE_NAME)
         self.view_issue_page.edit_current_issue()
         self.edit_issue_page.set_priority_value("High")
-        self.edit_issue_page.submit_issue()
+        self.edit_issue_page.submit_update_issue()
+        assert self.edit_issue_page.issue_updated_message_appeared()
 
     def teardown_method(self):
         self.driver.close()
