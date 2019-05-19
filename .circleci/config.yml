@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/PythonAutomationTraining
         docker:
-            - image: circleci/python:3.7.2
+            - image: circleci/python:3.7-stretch-browsers
               environment:
                   PIPENV_VENV_IN_PROJECT: true
         steps:
