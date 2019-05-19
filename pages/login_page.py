@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
+
 class LoginPage:
     LOGIN_INPUT = (By.ID, "login-form-username")
     PASSWORD_INPUT = (By.ID, "login-form-password")
@@ -14,7 +15,7 @@ class LoginPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def login_to_jira(self, username, password):
+    def login_to_jira(self, username=MY_NAME, password=MY_PASS):
         self.driver.find_element(*self.LOGIN_INPUT).clear()
         self.driver.find_element(*self.LOGIN_INPUT).send_keys(username)
         self.driver.find_element(*self.PASSWORD_INPUT).clear()
@@ -35,3 +36,4 @@ class LoginPage:
     def open(self):
         self.driver.get(self.TEST_URL)
         return self
+
