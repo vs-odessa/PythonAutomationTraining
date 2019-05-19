@@ -14,19 +14,23 @@ class LoginPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def login_to_jira(self):
+    def login_to_jira(self, username, password):
         self.driver.find_element(*self.LOGIN_INPUT).clear()
-        self.driver.find_element(*self.LOGIN_INPUT).send_keys(self.MY_NAME)
+        self.driver.find_element(*self.LOGIN_INPUT).send_keys(username)
         self.driver.find_element(*self.PASSWORD_INPUT).clear()
-        self.driver.find_element(*self.PASSWORD_INPUT).send_keys(self.MY_PASS)
+        self.driver.find_element(*self.PASSWORD_INPUT).send_keys(password)
         self.driver.find_element(*self.LOGIN_BUTTON).submit()
 
     def at_page(self):
         return "System Dashboard - Hillel IT School JIRA" in self.driver.title
 
     def login_form_presented(self):
-        return WebDriverWait(self.driver, 10)\
+        return WebDriverWait(self.driver, 5)\
             .until(ec.presence_of_element_located((By.ID, "login-form-username")))
+
+    def auth_failed(self):
+        return WebDriverWait(self.driver, 5)\
+            .until(ec.presence_of_element_located((By.ID, "usernameerror")))
 
     def open(self):
         self.driver.get(self.TEST_URL)
