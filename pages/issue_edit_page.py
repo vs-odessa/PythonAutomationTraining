@@ -41,6 +41,7 @@ class EditIssuePage:
         priority_element: WebElement = self.driver.find_element(*self.PRIORITY_FIELD)
         # select = Select(priority_element)
         # select.select_by_value(value)
+        sleep(0.5)
         priority_element.send_keys(value)
         sleep(2)
         priority_element.send_keys(Keys.ENTER)
