@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/PythonAutomationTraining
         docker:
-            - image: circleci/python:3.7.2
+            - image: circleci/python:3.7-stretch-browsers
               environment:
                   PIPENV_VENV_IN_PROJECT: true
         steps:
@@ -18,12 +18,13 @@ jobs:
             
             - run:
                 command: |
-                  sudo pip install pytest 
+                  sudo pip install pytest
+                  sudo pip install selenium
+                  sudo pip install webdriver_manager
                   
             - run: 
                 name: run tests 
                 command: |
-                  . venv/bin/activate
                   sudo pip install xmltodict
                   pytest -v
                   
