@@ -18,12 +18,13 @@ jobs:
             
             - run:
                 command: |
-                  sudo pip install pytest 
+                  sudo pip install pytest
+                  sudo pip install selenium
                   
             - run: 
                 name: run tests 
                 command: |
-                  . venv/bin/activate
+#                  . venv/bin/activate
                   sudo pip install xmltodict
                   pytest -v
                   
