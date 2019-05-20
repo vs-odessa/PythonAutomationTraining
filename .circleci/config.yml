@@ -20,6 +20,7 @@ jobs:
                 command: |
                   sudo pip install pytest
                   sudo pip install selenium
+                  sudo pip install webdriver_manager
                   
             - run: 
                 name: run tests 
