@@ -70,7 +70,6 @@ def create_issue(project_key, issue_type="Bug", summary="", description=""):
     issue_body["fields"]["description"] = description
     issue_body["fields"]["issuetype"]["name"] = issue_type
 
-    # response = requests.post(full_url, json=issue_body, headers=_headers)
     response = jira_post_request(full_url, issue_body)
     return response
 
@@ -92,21 +91,8 @@ def get_error_summary(response):
 
 def search_issues(**search_params):
     params = dict()
-    # first_param = search_params[0].key + search_params[0].value
     for key, value in search_params.items():
         params[key] = value
-
-
-    # query_string = ""
-    # l = len(search_params)
-    # i = 1
-    # for par in search_params:
-    #     query_string += par
-    #     if i < l:
-    #         query_string += "&"
-    #     i += i
-
-    # full_query = {"jql": params}
     full_url = get_full_url(jira_endpoints.search_issue)
     response = jira_get_request(full_url, params)
     return response
