@@ -1,7 +1,8 @@
 import sys
+sys.path.append('.')
 import api.jira_actions as jira
 from functions.data_helper import generate_random_string
-sys.path.append('.')
+
 
 class TestCreateIssuesApi:
 
