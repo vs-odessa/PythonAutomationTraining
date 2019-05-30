@@ -2,3 +2,4 @@ xmltodict
 selenium
 webdriver_manager
 chromedriver
+requests
