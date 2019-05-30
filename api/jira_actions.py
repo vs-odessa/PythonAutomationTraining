@@ -80,15 +80,23 @@ def issue_created(response_to_check):
     return False
 
 
+
 def check_if_valid_json_response(response):
-    if get_response_type(response.status_code) != ResponseType.SUCCESS:
-        return "Request is not successful: " + response.status_code
+    if get_response_type(response) != ResponseType.SUCCESS:
+        return "Request is not successful: " + str(response.status_code)
+    if not response.json():
+        return "Response is not a valid json"
+
+
+def check_if_valid_error_response(response):
+    if get_response_type(response) != ResponseType.CLIENT_ERROR:
+        return "Request is not successful: " + str(response.status_code)
     if not response.json():
         return "Response is not a valid json"
 
 
 def get_error_summary(response):
-    check_if_valid_json_response(response)
+    check_if_valid_error_response(response)
     try:
         response_json = response.json()
         error_summary = response_json["errors"]["summary"]
