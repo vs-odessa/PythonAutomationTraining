@@ -42,7 +42,7 @@ def get_session_id(username=_username, password=_password):
         if len(token) >= 0:
             return token
     else:
-        return None
+        return "Session is not established"
 
 
 def create_issue(project_key, issue_type="Bug", summary="", description=""):
