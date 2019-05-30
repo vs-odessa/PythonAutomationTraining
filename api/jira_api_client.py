@@ -8,12 +8,12 @@ _username = "VolodymyrStepanov"
 _password = "VolodymyrStepanov"
 
 
-def encode_credentials():
+def _encode_credentials():
     credentials = _username + ":" + _password
     return encode_to_base64(credentials)
 
 
-def set_log_settings():
+def _set_log_settings():
     http_client.HTTPConnection.debuglevel = 1
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
@@ -22,30 +22,29 @@ def set_log_settings():
     requests_log.propagate = True
 
 
-def jira_get_request(url, params=None):
-    set_log_settings()
-    encoded_credentials = encode_credentials()
+def _jira_prepare_headers():
+    encoded_credentials = _encode_credentials()
     _headers = dict()
     _headers["Authorization"] = "Basic " + encoded_credentials
     _headers["Content-Type"] = "application/json"
+    return _headers
+
+
+def jira_get_request(url, params=None):
+    _set_log_settings()
+    _headers = _jira_prepare_headers()
     return requests.get(url, params=params, headers=_headers)
 
 
 def jira_post_request(url, json_body):
-    set_log_settings()
-    encoded_credentials = encode_credentials()
-    _headers = dict()
-    _headers["Authorization"] = "Basic " + encoded_credentials
-    _headers["Content-Type"] = "application/json"
+    _set_log_settings()
+    _headers = _jira_prepare_headers()
     return requests.post(url, json=json_body, headers=_headers)
 
 
 def jira_put_request(url, json_body):
-    set_log_settings()
-    encoded_credentials = encode_credentials()
-    _headers = dict()
-    _headers["Authorization"] = "Basic " + encoded_credentials
-    _headers["Content-Type"] = "application/json"
+    _set_log_settings()
+    _headers = _jira_prepare_headers()
     return requests.put(url, json=json_body, headers=_headers)
 
 

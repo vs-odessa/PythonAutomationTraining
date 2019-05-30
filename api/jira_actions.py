@@ -1,7 +1,7 @@
 import requests
 import api.jira_endpoints as jira_endpoints
-from functions.data_helper import encode_to_base64
-from api.jira_api_client import jira_get_request, jira_post_request, jira_put_request, get_response_type
+from functions.data_helper import encode_to_base64, is_json
+from api.jira_api_client import jira_get_request, jira_post_request, jira_put_request, get_response_type, ResponseType
 import random
 
 _base_url = "https://jira.hillel.it/rest"
@@ -80,13 +80,21 @@ def issue_created(response_to_check):
     return False
 
 
+def check_if_valid_json_response(response):
+    if get_response_type(response.status_code) != ResponseType.SUCCESS:
+        return "Request is not successful: " + response.status_code
+    if not response.json():
+        return "Response is not a valid json"
+
+
 def get_error_summary(response):
+    check_if_valid_json_response(response)
     try:
         response_json = response.json()
         error_summary = response_json["errors"]["summary"]
         return error_summary
     except Exception:
-        return ""
+        return "JSON response has no expected key"
 
 
 def search_issues(**search_params):
