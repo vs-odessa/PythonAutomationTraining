@@ -10,6 +10,10 @@ Project contains tasks for Auomation QA Python Course:
 * Phase 5: API Testing with Requests
 * Phase 6: PyTest Parallel Execution
 
+**Project Status:**
+
+[![CircleCI](https://circleci.com/gh/vs-odessa/PythonAutomationTraining/tree/master.svg?style=svg)](https://circleci.com/gh/vs-odessa/PythonAutomationTraining/tree/master)
+
 
 ## Prerequisites
 
