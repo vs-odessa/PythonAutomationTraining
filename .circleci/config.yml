@@ -23,7 +23,13 @@ jobs:
 #                  sudo pip install allure-pytest
 #                  sudo pip install selenium
 #                  sudo pip install webdriver_manager
-                  
+
+            - run:
+                name: install allure cli
+                command: |
+                  uname -a
+                  sudo npm install -g allure-commandline --save-dev
+
             - run: 
                 name: run tests 
                 command: |
