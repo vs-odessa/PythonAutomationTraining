@@ -40,7 +40,7 @@ jobs:
                 name: report
                 when: always
                 command: |
-                  allure generate -c ~/allure_html_reports -o ./test-reports/allure
+                  allure generate -c ./test-reports/allure -o ~/allure_html_reports
 
             - store_artifacts:
                 path: test-reports
