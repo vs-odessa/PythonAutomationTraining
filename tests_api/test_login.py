@@ -1,3 +1,5 @@
+import sys
+sys.path.append('.')
 import api.jira_actions as jira_lib
 import allure
 _username = "VolodymyrStepanov"
