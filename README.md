@@ -26,17 +26,19 @@ https://docs.qameta.io/allure/
 
 ## Running tests
 
+There are 3 categories of tests in project - unit, api, ui, marked with the same tags.
+
 ### Unit tests
 
-    pytest -v tests_functions/
+    pytest -v -m "unit"
 
 ### API tests
 
-    pytest -v tests_api/
+    pytest -v -m "api"
     
 ### UI tests
 
-    pytest -v tests_ui/
+    pytest -v - m "ui"
     
 ## Creating Allure reports
 
