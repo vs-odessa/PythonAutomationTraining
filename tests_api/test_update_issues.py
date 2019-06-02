@@ -1,9 +1,12 @@
 import api.jira_actions as jira
 from functions.data_helper import generate_random_string
+import allure
 
 
 class TestUpdateIssuesApi:
 
+    @allure.tag('api')
+    @allure.title('Update Jira Issue description')
     def test_update_issue_description(self):
         my_issue = jira.search_issues(jql="assignee=VolodymyrStepanov")
         new_description = "Description was updated with:" + generate_random_string(10)
@@ -14,6 +17,8 @@ class TestUpdateIssuesApi:
         updated_issue = jira.get_issue_info_by_key(my_issue_key)
         assert updated_issue.json()["fields"]["description"] == new_description
 
+    @allure.tag('api')
+    @allure.title('Update Jira Issue Priority')
     def test_update_issue_priority(self):
         my_issue = jira.search_issues(jql="assignee=VolodymyrStepanov")
         my_issue_key = jira.get_issue_key(my_issue)
@@ -24,6 +29,8 @@ class TestUpdateIssuesApi:
         updated_issue = jira.get_issue_info_by_key(my_issue_key)
         assert updated_issue.json()["fields"]["priority"]["name"] == new_priority
 
+    @allure.tag('api')
+    @allure.title('Update Jira Issue Assignee')
     def test_update_issue_assignee(self):
         old_assignee="VolodymyrStepanov"
         new_assignee = ""
