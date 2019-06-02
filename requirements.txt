@@ -4,3 +4,5 @@ webdriver_manager
 chromedriver
 requests
 allure-pytest
+pytest-rerunfailures
+pytest-xdist

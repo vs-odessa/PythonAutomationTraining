@@ -31,10 +31,10 @@ jobs:
                   sudo npm install -g allure-commandline --save-dev
 
             - run:
-                name: Run API Tests
+                name: Run API Tests in Parallel
                 command: |
                   . venv/bin/activate
-                  pytest -v tests_api/test_update_issues.py --alluredir=./test-reports/allure
+                  pytest -n 3 -v tests_api/test_update_issues.py --alluredir=./test-reports/allure
 
             - run:
                 name: Run UI Tests
