@@ -31,6 +31,11 @@ jobs:
                   sudo npm install -g allure-commandline --save-dev
 
             - run:
+                name: Check Jira site start page
+                command: |
+                  curl https://jira.hillel.it --output ./test-reports/startpage.html
+
+            - run:
                 name: Run Unit Tests in Parallel using mark tag
                 command: |
                   . venv/bin/activate
