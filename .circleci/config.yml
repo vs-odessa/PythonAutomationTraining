@@ -34,7 +34,8 @@ jobs:
                 name: run tests 
                 command: |
                   . venv/bin/activate
-                  pytest -v tests_api/ --alluredir=./test-reports/allure
+#                  pytest -v tests_api/ --alluredir=./test-reports/allure
+                  pytest -v tests_ui/test_jira_login.py --alluredir=./test-reports/allure
 
             - run:
                 name: report
