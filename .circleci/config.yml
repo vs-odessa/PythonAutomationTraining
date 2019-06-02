@@ -31,10 +31,10 @@ jobs:
                   sudo npm install -g allure-commandline --save-dev
 
             - run:
-                name: Run Unit Tests in Parallel
+                name: Run Unit Tests in Parallel using mark tag
                 command: |
                   . venv/bin/activate
-                  pytest -n 3 -v tests_functions/ --alluredir=./test-reports/allure
+                  pytest -n 3 -v -m "unit" --alluredir=./test-reports/allure
 
             - run:
                 name: Run API Tests in Parallel

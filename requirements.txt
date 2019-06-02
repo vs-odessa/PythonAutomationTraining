@@ -1,3 +1,4 @@
+pytest
 xmltodict
 selenium
 webdriver_manager

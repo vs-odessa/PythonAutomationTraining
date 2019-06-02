@@ -4,10 +4,11 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.issue_edit_page import EditIssuePage
 from pages.issue_view_page import ViewIssuePage
-from time import time
 import allure
+import pytest
 
 
+@pytest.mark.ui
 class TestIssueJira:
 
     # ISSUE_NAME = "Auto Issue Vladimir " + str(time())

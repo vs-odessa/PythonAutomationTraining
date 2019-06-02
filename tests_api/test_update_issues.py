@@ -3,8 +3,10 @@ sys.path.append('.')
 import api.jira_actions as jira
 from functions.data_helper import generate_random_string
 import allure
+import pytest
 
 
+@pytest.mark.api
 class TestUpdateIssuesApi:
 
     @allure.tag('api')

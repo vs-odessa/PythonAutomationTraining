@@ -1,3 +1,5 @@
+import sys
+sys.path.append('.')
 import allure
 from functions.data_helper import get_current_timestamp_string
 
@@ -11,3 +13,4 @@ def attach_screenshot(driver, name=""):
                       attachment_type=allure.attachment_type.PNG)
     except Exception as e:
         print(e)
+

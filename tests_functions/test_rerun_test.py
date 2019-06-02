@@ -3,8 +3,9 @@ import pytest_rerunfailures
 import allure
 import os
 import random
+import pytest
 
-
+@pytest.mark.unit
 @pytest.mark.flaky(reruns=5)
 @allure.tag('unit')
 @allure.title('Generate random number - Check Rerun')

@@ -1,11 +1,15 @@
-import pytest, json
+import sys
+sys.path.append('.')
 from functions.file_helper import *
 import allure
+import pytest
+
 
 current_path = os.getcwd()
 abs_xmlfile_path = os.path.join(current_path, "samples", "xml", "test_data.xml")
 
 
+@pytest.mark.unit
 class TestsFileProcessing:
 
     @allure.tag('unit')
