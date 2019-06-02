@@ -15,20 +15,27 @@ jobs:
                   python3 -m venv venv
                   . venv/bin/activate
                   pip install -r requirements.txt
-            
-            - run:
-                command: |
-                  sudo pip install pytest
-                  sudo pip install allure-pytest
-                  sudo pip install selenium
-                  sudo pip install webdriver_manager
+
+### Unnecessary since use venv in test run which contains all dependencies from previous step
+#            - run:
+#                command: |
+#                  sudo pip install pytest
+#                  sudo pip install allure-pytest
+#                  sudo pip install selenium
+#                  sudo pip install webdriver_manager
                   
             - run: 
                 name: run tests 
                 command: |
-                  sudo pip install xmltodict
+                  . venv/bin/activate
                   pytest -v tests_api/ --alluredir=./test-reports/allure
-                  
+
+            - run:
+                name: report
+                when: always
+                command: |
+                  allure generate -c ~/allure_html_reports -o ./test-reports/allure
+
             - store_artifacts:
                 path: test-reports
                 destination: test-reports
