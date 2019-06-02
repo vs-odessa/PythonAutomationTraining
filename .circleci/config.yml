@@ -33,7 +33,8 @@ jobs:
             - run:
                 name: Check Jira site start page
                 command: |
-                  curl https://jira.hillel.it --output ./test-reports/startpage.html
+                  curl https://jira.hillel.it --output startpage.html
+                  mv startpage.html ./test-reports/
 
             - run:
                 name: Run Unit Tests in Parallel using mark tag
