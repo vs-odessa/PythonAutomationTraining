@@ -26,7 +26,7 @@ jobs:
                 name: run tests 
                 command: |
                   sudo pip install xmltodict
-                  pytest -v tests_api/
+                  pytest -v tests_api/ --alluredir=./test-reports/allure
                   
             - store_artifacts:
                 path: test-reports

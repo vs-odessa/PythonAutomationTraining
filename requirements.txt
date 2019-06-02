@@ -3,3 +3,4 @@ selenium
 webdriver_manager
 chromedriver
 requests
+allure-pytest
