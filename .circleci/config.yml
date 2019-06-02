@@ -19,6 +19,7 @@ jobs:
             - run:
                 command: |
                   sudo pip install pytest
+                  sudo pip install allure-pytest
                   sudo pip install selenium
                   sudo pip install webdriver_manager
                   
