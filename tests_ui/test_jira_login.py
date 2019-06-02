@@ -9,7 +9,7 @@ import allure
 import pytest
 
 
-@pytest.mark.api
+@pytest.mark.ui
 class TestLoginJira:
 
     def setup_method(self):
