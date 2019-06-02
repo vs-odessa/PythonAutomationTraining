@@ -10,7 +10,7 @@ jobs:
             - checkout
             
             - run:
-                name: install dependencies
+                name: Install Dependencies
                 command: |
                   python3 -m venv venv
                   . venv/bin/activate
@@ -25,20 +25,25 @@ jobs:
 #                  sudo pip install webdriver_manager
 
             - run:
-                name: install allure cli
+                name: Install Allure CLI
                 command: |
                   uname -a
                   sudo npm install -g allure-commandline --save-dev
 
-            - run: 
-                name: run tests 
+            - run:
+                name: Run API Tests
+                command: |
+                  . venv/bin/activate
+                  pytest -v tests_api/test_update_issues.py --alluredir=./test-reports/allure
+
+            - run:
+                name: Run UI Tests
                 command: |
                   . venv/bin/activate
                   pytest -v tests_ui/test_jira_login.py --alluredir=./test-reports/allure
-                # pytest -v tests_api/ --alluredir=./test-reports/allure
 
             - run:
-                name: report
+                name: Allure report
                 when: always
                 command: |
                   allure generate -c ./test-reports/allure -o ./test-reports/allure_html_reports
