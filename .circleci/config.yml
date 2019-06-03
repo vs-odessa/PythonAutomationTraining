@@ -31,10 +31,25 @@ jobs:
                   sudo npm install -g allure-commandline --save-dev
 
             - run:
-                name: Run API Tests
+                name: Check Jira site start page
+                command: |
+                  curl https://jira.hillel.it --output startpage.html
+                  pwd
+                  ls -l
+                  mkdir test-reports
+                  mv startpage.html test-reports/
+
+            - run:
+                name: Run Unit Tests in Parallel using mark tag
                 command: |
                   . venv/bin/activate
-                  pytest -v tests_api/test_update_issues.py --alluredir=./test-reports/allure
+                  pytest -n 3 -v -m "unit" --alluredir=./test-reports/allure
+
+            - run:
+                name: Run API Tests in Parallel
+                command: |
+                  . venv/bin/activate
+                  pytest -n 3 -v tests_api/test_update_issues.py --alluredir=./test-reports/allure
 
             - run:
                 name: Run UI Tests

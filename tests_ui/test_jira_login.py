@@ -6,8 +6,10 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from functions.test_helper import attach_screenshot
 import allure
+import pytest
 
 
+@pytest.mark.ui
 class TestLoginJira:
 
     def setup_method(self):

@@ -1,6 +1,9 @@
 import api.jira_actions as jira
 import allure
+import pytest
 
+
+@pytest.mark.api
 class TestSearchIssuesApi:
 
     @allure.tag('api')

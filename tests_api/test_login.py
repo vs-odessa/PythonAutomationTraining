@@ -2,10 +2,14 @@ import sys
 sys.path.append('.')
 import api.jira_actions as jira_lib
 import allure
+import pytest
+
+
 _username = "VolodymyrStepanov"
 _password = "VolodymyrStepanov"
 
 
+@pytest.mark.api
 class TestLoginJiraApi:
 
     @allure.tag('api')
