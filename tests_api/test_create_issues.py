@@ -2,10 +2,13 @@ import sys
 sys.path.append('.')
 import api.jira_actions as jira
 from functions.data_helper import generate_random_string
+import allure
 
 
 class TestCreateIssuesApi:
 
+    @allure.tag('api')
+    @allure.title('Create Jira Bug')
     def test_create_issue_positive(self):
         project_key = "WEBINAR"
         issue_type = "Bug"
@@ -14,6 +17,8 @@ class TestCreateIssuesApi:
         response = jira.create_issue(project_key, issue_type, issue_summary, issue_description)
         assert jira.issue_created(response)
 
+    @allure.tag('api')
+    @allure.title('Create Jira Bug - Empty Summary')
     def test_create_issue_empty_summary(self):
         project_key = "WEBINAR"
         issue_type = "Bug"
@@ -24,6 +29,8 @@ class TestCreateIssuesApi:
         expected_error_message = "You must specify a summary of the issue."
         assert jira.get_error_summary(response) == expected_error_message
 
+    @allure.tag('api')
+    @allure.title('Create Jira bug - Exceed max length')
     def test_create_issue_summary_exceeded_length(self):
         project_key = "WEBINAR"
         issue_type = "Bug"

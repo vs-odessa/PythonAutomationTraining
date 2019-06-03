@@ -5,6 +5,7 @@ from pages.main_page import MainPage
 from pages.issue_edit_page import EditIssuePage
 from pages.issue_view_page import ViewIssuePage
 from time import time
+import allure
 
 
 class TestIssueJira:
@@ -13,6 +14,7 @@ class TestIssueJira:
 
     ISSUE_NAME = "Test Issue Vladimir"
 
+    @allure.tag('ui')
     def setup_method(self):
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         self.login_page = LoginPage(self.driver)
@@ -20,12 +22,14 @@ class TestIssueJira:
         self.edit_issue_page = EditIssuePage(self.driver)
         self.view_issue_page = ViewIssuePage(self.driver)
 
+    @allure.tag('ui')
     def login_flow(self):
         self.login_page.open()
         self.login_page.login_to_jira()
         self.driver.implicitly_wait(5)
         assert self.main_page.logged_in()
 
+    @allure.tag('ui')
     def test_create_issue_positive(self):
         self.login_page.open()
         self.login_page.login_to_jira()
@@ -37,6 +41,7 @@ class TestIssueJira:
         self.edit_issue_page.assign_to_current_user()
         self.edit_issue_page.submit_create_issue()
 
+    @allure.tag('ui')
     def test_create_issue_missing_required_field(self):
         self.login_flow()
         self.main_page.click_create_issue_button()
@@ -44,12 +49,14 @@ class TestIssueJira:
         self.edit_issue_page.submit_create_issue()
         assert self.edit_issue_page.error_occurred()
 
+    @allure.tag('ui')
     def test_search_issue(self):
         self.login_flow()
         self.main_page.perform_search(self.ISSUE_NAME)
         summary: str = self.view_issue_page.get_issue_summary()
         assert summary.islower() == self.ISSUE_NAME.islower()
 
+    @allure.tag('ui')
     def test_update_issue(self):
         self.login_flow()
         self.main_page.perform_search(self.ISSUE_NAME)
@@ -58,5 +65,6 @@ class TestIssueJira:
         self.edit_issue_page.submit_update_issue()
         assert self.edit_issue_page.issue_updated_message_appeared()
 
+    @allure.tag('ui')
     def teardown_method(self):
         self.driver.close()

@@ -3,6 +3,7 @@ import api.jira_endpoints as jira_endpoints
 from functions.data_helper import encode_to_base64, is_json
 from api.jira_api_client import jira_get_request, jira_post_request, jira_put_request, get_response_type, ResponseType
 import random
+import allure
 
 _base_url = "https://jira.hillel.it/rest"
 _username = "VolodymyrStepanov"
@@ -14,6 +15,7 @@ def get_full_url(endpoint_path, base_url=_base_url):
     return base_url + endpoint_path
 
 
+@allure.title('Login to Jira')
 def login(username=_username, password=_password):
     full_url = get_full_url(jira_endpoints.login)
     auth_data = {"username": username, "password": password}
@@ -45,6 +47,7 @@ def get_session_id(username=_username, password=_password):
         return "Session is not established"
 
 
+@allure.step('Create Jira Issue')
 def create_issue(project_key, issue_type="Bug", summary="", description=""):
     full_url = get_full_url(jira_endpoints.create_issue)
     issue_body = {
@@ -57,11 +60,25 @@ def create_issue(project_key, issue_type="Bug", summary="", description=""):
             "description": "",
             "issuetype": {
                 "name": ""
+                }
+        }
+    }
+
+    issue_body_timetracking = {
+        "fields": {
+            "project":
+                {
+                    "key": ""
                 },
+            "summary": "",
+            "description": "",
+            "issuetype": {
+                "name": ""
+            },
             "timetracking": {
                 "originalEstimate": "1d 12h",
                 "remainingEstimate": "2h 30m"
-                }
+            }
         }
     }
 
@@ -105,6 +122,7 @@ def get_error_summary(response):
         return "JSON response has no expected key"
 
 
+@allure.step('Search Jira Issue')
 def search_issues(**search_params):
     params = dict()
     for key, value in search_params.items():
@@ -126,6 +144,7 @@ def get_issue_info_by_key(issue_key):
     return issue
 
 
+@allure.step('Update Jira Issue')
 def update_issue(issue_key, **fields_to_update):
     full_url = get_full_url(jira_endpoints.create_issue) + "/" + issue_key
     fields = dict()
@@ -136,6 +155,7 @@ def update_issue(issue_key, **fields_to_update):
     return response
 
 
+@allure.step('Update Jira Issue Priority')
 def update_issue_priority(issue_key, new_priority):
     full_url = get_full_url(jira_endpoints.create_issue) + "/" + issue_key
     update_body = {"update": {"priority": [{"set": {"name": new_priority}}]}}
@@ -143,6 +163,7 @@ def update_issue_priority(issue_key, new_priority):
     return response
 
 
+@allure.step('Update Jira Issue Assignee')
 def update_issue_assignee(issue_key, new_assignee):
     full_url = get_full_url(jira_endpoints.create_issue) + "/" + issue_key
     update_body = {"fields": {"assignee": {"name": new_assignee}}}

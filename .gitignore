@@ -108,6 +108,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Test results
+test-reports
+
 # Spyder project settings
 .spyderproject
 .spyproject
